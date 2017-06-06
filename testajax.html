@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<title>Ajax 테스트</title>
+<script src="http://code.jquery.com/jquery-1.11.2.min.js"></script>
+<!-- <script src="http://code.jquery.com/jquery-migrate-1.2.1.min.js"></script> -->
+<script type="text/javascript">
+$(document).ready(function(){
+    $.ajax({
+        type : "get",
+        url : "package.json",
+        dataType : "text",
+        error : function(){
+            alert('통신실패!');
+        },
+        success : function(data){
+            console.log("통신데이터 값 : " + data) ;
+            $("[type=button]").bind('click', function(){
+                $("#dataArea").html("통신데이터 값 : " + data) ;
+            });
+
+        }
+    });
+});
+</script>
+
+</head>
+<body>
+    <button type="button">get Data</button>
+    <div id="dataArea"></div>
+
+</body>
+</html>
