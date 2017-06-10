@@ -1,5 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+//var Reac = require('react');
+//import, require -> node.js webpack => simple.js => node.js
 
 class TodoApp extends React.Component {
   constructor(props) {

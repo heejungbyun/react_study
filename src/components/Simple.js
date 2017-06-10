@@ -10,6 +10,7 @@ class Simple extends React.Component{
 	}
 }
 
+
 console.dir(React.Component)
 // es6를 사용하지 않고 create-react-class사용시
 // var App = createReactClass({
