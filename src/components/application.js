@@ -1,4 +1,5 @@
 import React from 'react';
+import ReactDOM from 'react-dom';
 var inpStyle = {
     height:'28px',
     padding:'3px',
@@ -21,18 +22,6 @@ class TodoApp extends React.Component {
     this.handleSubmit = this.handleSubmit.bind(this);
     this.state = {items: [], text: ''};
   }
-/*
-var TodoApp = function(props) {
-    var React = React.Component;
-    React.call(this, props);
-    this.handleChange = this.handleChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
-    this.state = {items: [], text: ''};
-};
-TodoApp.prototype = Object.create(React.prototype);
-TodoApp.prototype.constructor = TodoApp;
-*/
-
 
   render() {
     return (

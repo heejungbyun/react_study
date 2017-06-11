@@ -1,15 +1,18 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import HelloMessage from './components/simple';
-import Timer from './components/stateful';
-import TodoApp from './components/application';
+
+import Header from './components/header';
+import Contents from './components/contents';
+import Footer from './components/footer';
+import Test from './components/test';
+
 const contElement = (
   <div>
-      <HelloMessage name="A Single Component" />
-      <Timer />
-      <TodoApp />
+    <Header />
+    <Contents />
+    <Footer />
   </div>
-);
+)
+var rootElement = document.getElementById('root');
 
-const rootElement = document.getElementById('root');
 ReactDOM.render(contElement, rootElement);
