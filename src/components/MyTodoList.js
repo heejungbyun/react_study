@@ -34,10 +34,14 @@ class TodoNote extends React.Component{
 
 //입력 컴포넌트
 class TodoForm extends React.Component{
+	handleChange(e){
+		var text = e.target.value;
+		return text
+	}
     render(){
         return(
-            <div className="form_todo">
-                <input type="text"/>
+            <div className="form_todo" onSubmit={this._handleSubmit}>
+                <input type="text" onChange={this.handleChange}/>
                 <button>입력</button>
             </div>
         )
