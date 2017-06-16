@@ -1,5 +1,6 @@
 import React from 'react';
 
+
 class TodoApp extends React.Component{
 	constructor(props){
 		super(props);
@@ -16,7 +17,7 @@ class TodoApp extends React.Component{
 				<form onSubmit={this.handleSubmit}>
 					<input onChange={this.handleChange} value={this.state.text} />
 					<button>{'Add #' +(this.state.items.length + 1)} </button>
-				</form>		
+				</form>
 			</div>
 		);
 	}
@@ -44,10 +45,10 @@ class TodoList extends React.Component{
 		return(
 			<ul>
 				{this.props.items.map(item =>(
-					<li key={item.id}>{item.text}</li>	
+					<li key={item.id}>{item.text}</li>
 				))}
 			</ul>
 		);
 	}
 }
-export default TodoApp; 
+export default TodoApp;
