@@ -1,0 +1,72 @@
+@charset "UTF-8";
+/* CSS Document */
+/* Common */
+body, p, h1, h2, h3, h4, h5, h6, ul, ol, li, dl, dt, dd, table, th, td, form, fieldset, legend, input, textarea, button, select, legend {
+  margin: 0;
+  padding: 0; }
+
+body, input, textarea, select, button, table {
+  font-size: 14px;
+  line-height: 18px;
+  font-family: HelveticaNeue-Light,Helvetica,AppleSDGothicNeo-Regular,"\B098\B214\ACE0\B515",nanumgothic,sans-serif;
+  color: #252525; }
+
+body {
+  position: relative;
+  -webkit-text-size-adjust: none; }
+
+img, fieldset {
+  border: 0; }
+
+ul, ol {
+  list-style: none; }
+
+em, address {
+  font-style: normal; }
+
+a {
+  text-decoration: none; }
+
+table {
+  border-collapse: collapse; }
+
+hr {
+  display: none !important; }
+
+legend, .blind, #u_skip {
+  overflow: hidden;
+  position: absolute;
+  left: -999em;
+  width: 1px;
+  height: 1px;
+  font-size: 0;
+  line-height: 0; }
+
+.sr_only {
+  overflow: hidden;
+  color: transparent;
+  white-space: nowrap; }
+
+.hidden {
+  visibility: hidden; }
+
+.headerWrap {
+  padding: 15px;
+  background-color: #000;
+  color: #fff;
+  text-align: center; }
+
+.tit_header {
+  font-size: 15px; }
+
+.container {
+  width: 300px;
+  padding: 10px;
+  margin: 0 auto;
+  box-shadow: 1px 1px 1px 1px rgba(0, 0, 0, 0.2); }
+
+.footer {
+  text-align: center;
+  font-size: 12px;
+  color: #8f8f8f;
+  border-top: 1px solid #c0c0c0; }
