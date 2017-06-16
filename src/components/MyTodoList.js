@@ -9,24 +9,30 @@ class TodoList extends React.Component{
 		this.handleSubmit = this.handleSubmit.bind(this);
 		this.state = {items:[],text:''};
 	}
-	handleChange(e){
 
+	handleChange(e){
+		this.setState({text:e.target.value});
 	}
+
 	handleSubmit(e){
+		e.preventDefault();
+		var newItem = {
+			text: this.state.text,
+			id:Date.now()
+		};
+		this.setState((prevState) => ({
+			items: prevState.items.concat(newItem),
+			text: ''
+		}))
 
 	}
     render(){
         return(
             <div>
-				<ul className="list_todo">
-					<li>
-						<label>라벨</label>
-						<input type="checkbox"/>
-						<strong>내용</strong>
-						<span className="date">날짜</span>
-						<button className="btn_modify">수정</button>
-						<button className="btn_del">삭제</button>
-					</li>
+				<ul>
+				  {this.state.items.map(item => (
+					<li key={item.id}>{item.text}</li>
+				  ))}
 				</ul>
 				<div className="form_todo">
 					<form onSubmit={this.handleSubmit}>
