@@ -1,12 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-
 import Header from './components/header';
 import Contents from './components/contents';
 import Footer from './components/footer';
-import Test from './components/test';
 
-const contElement = (
+const Element = (
   <div>
     <Header />
     <Contents />
@@ -14,5 +12,4 @@ const contElement = (
   </div>
 )
 var rootElement = document.getElementById('root');
-
-ReactDOM.render(contElement, rootElement);
+ReactDOM.render(Element, rootElement);
