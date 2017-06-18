@@ -10,8 +10,11 @@
   "license": "ISC",
   "dependencies": {
     "babel-preset-stage-0": "^6.5.0",
+    "extract-text-webpack-plugin": "^1.0.1",
+    "node-sass": "^4.5.3",
     "react": "^15.3.2",
     "react-dom": "^15.3.2",
+    "sass-loader": "^6.0.6",
     "webpack": "^1.13.2",
     "webpack-dev-server": "^1.16.1"
   },

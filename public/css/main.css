@@ -1,0 +1,133 @@
+@charset "UTF-8";
+/* reset */
+body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fieldset, legend, textarea, p, blockquote, th, td, input, select, textarea, button {
+  margin: 0;
+  padding: 0; }
+
+fieldset, img {
+  border: 0 none; }
+
+dl, ul, ol, menu, li {
+  list-style: none; }
+
+blockquote, q {
+  quotes: none; }
+
+blockquote:before, blockquote:after, q:before, q:after {
+  content: '';
+  content: none; }
+
+input, select, textarea, button {
+  vertical-align: middle; }
+
+button {
+  border: 0 none;
+  background-color: transparent;
+  cursor: pointer; }
+
+body {
+  background: #fff; }
+
+body, th, td, input, select, textarea, button {
+  font-size: 12px;
+  line-height: 1.5;
+  font-family: 'Malgun Gothic','\B9D1\C740   \ACE0\B515',sans-serif;
+  color: #333; }
+
+a {
+  color: #333;
+  text-decoration: none; }
+
+a:active, a:hover {
+  text-decoration: underline; }
+
+address, caption, cite, code, dfn, em, var {
+  font-style: normal;
+  font-weight: normal; }
+
+.ir_pm {
+  display: block;
+  overflow: hidden;
+  font-size: 0px;
+  line-height: 0;
+  text-indent: -9999px; }
+
+.ir_wa {
+  display: block;
+  overflow: hidden;
+  position: relative;
+  z-index: -10;
+  width: 100%;
+  height: 100%; }
+
+.screen_out {
+  overflow: hidden;
+  position: absolute;
+  width: 0;
+  height: 0;
+  line-height: 0;
+  text-indent: -9999px; }
+
+/*** MY TODO APP ***/
+/* layout */
+.headerWrap {
+  min-width: 620px;
+  font-size: 18px;
+  background: #233;
+  color: #fff;
+  text-align: center; }
+
+.container {
+  border: 1px solid #f1f1f1;
+  border-top: none;
+  background: #fcfcfc; }
+
+.container,
+.footer {
+  max-width: 900px;
+  min-width: 560px;
+  margin: 0 auto;
+  padding: 30px 30px; }
+
+.footer {
+  color: #a3a3a3; }
+
+/* cont_todolist */
+.cont_todolist {
+  border: 1px solid #eee;
+  background: #fff; }
+
+/* todo list */
+.list_todo {
+  padding: 0 20px; }
+
+.list_todo li {
+  padding: 10px 0;
+  border-bottom: 1px solid #efefef;
+  font-size: 15px;
+  letter-spacing: -1px;
+  text-indent: 3px; }
+
+/* form */
+.form_todo {
+  padding: 20px; }
+
+.form_todo .inp_todo {
+  width: 90%;
+  height: 32px;
+  border: 1px solid #e4e4e4;
+  text-indent: 6px;
+  vertical-align: top;
+  box-sizing: border-box; }
+
+.form_todo .inp_todo:focus {
+  border-color: goldenrod;
+  outline: none; }
+
+.form_todo .btn_submit {
+  width: 10%;
+  height: 32px;
+  border: 1px solid goldenrod;
+  border-left: none;
+  background-color: goldenrod;
+  color: #fff; }

@@ -1,3 +1,8 @@
+let ExtractTextPlugin = require('extract-text-webpack-plugin');
+
+// multiple extract instances
+let extractCSS = new ExtractTextPlugin('css/[name].css');
+
 module.exports = {
     entry: './src/index.js',
 
@@ -16,6 +21,13 @@ module.exports = {
     {
         loaders: [
             {
+                test: /\.scss$/,
+                loader: ExtractTextPlugin.extract(
+                    'style-loader', // backup loader when not building .css file
+			        'css-loader!sass-loader' // loaders to preprocess CSS
+                )
+            },
+            {
                 test: /\.js$/,
                 loader: 'babel',
                 exclude: /node_modules/,
@@ -23,11 +35,10 @@ module.exports = {
                     cacheDirectory: true,
                     presets: ['es2015', 'react']
                 }
-            },
-            {
-              test: /\.css$/,
-              loader: 'style!css-loader?modules&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]'
             }
         ]
-    }
+    },
+    plugins: [
+        extractCSS
+    ]
 };
