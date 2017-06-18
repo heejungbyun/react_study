@@ -10,9 +10,20 @@ class TodoList extends React.Component{
 		this.state = {items:[],text:''};
 	}
 	handleChange(e){
+        this.setState({text: e.target.value});
+		console.log(e.target.value)
 
 	}
 	handleSubmit(e){
+        e.preventDefault();
+		var newItem = {
+			text: this.state.text,
+			id: Date.now()
+		};
+		this.setState((prevState) => ({
+			items: prevState.items.concat(newItem),
+			text:''
+		}));
 
 	}
     render(){
@@ -22,7 +33,7 @@ class TodoList extends React.Component{
 					<li>
 						<label>라벨</label>
 						<input type="checkbox"/>
-						<strong>내용</strong>
+						<strong><Todo items={this.state.items} /></strong>
 						<span className="date">날짜</span>
 						<button className="btn_modify">수정</button>
 						<button className="btn_del">삭제</button>
@@ -38,6 +49,19 @@ class TodoList extends React.Component{
 
         )
     }
+
+}
+
+class Todo extends React.Component{
+	render(){
+		return(
+			<ul>
+				{this.props.items.map(item =>(
+					<li key={item.id}>{item.text}</li>
+				))}
+			</ul>
+		);
+	}
 }
 
 export default TodoList;
