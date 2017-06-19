@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>javascript closure</title>
+</head>
+<body>
+    <div class="wrap">
+        <div class="header">
+            <button class="load_ajax">불러오잣</button>
+        </div>
+        <div class="result">
+            미리텍스트
+        </div>
+        <div>
+            더미텍스트 ㅋㅋㅋ
+        </div>
+    </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script>
+        $.ajax({
+            'url':'data/data.txt',
+            'type':'get',
+            'dataType':'text',
+            'success':function(data){
+                $(document).on('click','.load_ajax',function(){
+                    $('.result').text(data)
+                })
+            },
+            'error':function(xhr, txtStatus, errorThrown){
+                document.write('통신에 실패했습니다.')
+            }
+        });
+    </script>
+</body>
+</html>
