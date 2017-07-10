@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Practice</title>
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <style type="text/css">
+    </style>
+    <script src="//code.jquery.com/jquery-1.12.4.min.js"></script>
+</head>
+<body>
+    <div class="panel panel-default">
+        <div class="panel panel-body cate">
+			<select class="select"></select>
+        </div>
+    </div>
+    <div class="panel-body result">
+
+    </div>
+    <script>
+        $.ajax({
+            'type':'get',
+            'url':'data/data_selector.json',
+            'dataType':'json',
+            'cache':false,
+            success:function(json){
+				var data = json.tree;
+				var selectComponent = {
+					_select : null,
+					_initSelect : function(selector){
+						this._select = $(selector);
+						this._select.append('<option>선택하세요</선택하세요>');
+						for(var i in data){
+							this._select.append('<option>'+data[i].field+'</option')
+						}
+					},
+					_stepSelect : function(childDepth){
+						var selector = this._select;
+						$(document).on('change',selector,function(){
+							// 1depth 이외의 모든 값을 초기화한다.
+							$(selector).siblings().detach();
+							var selectIdx = $(selector).find('option:selected').index();
+							if(selectIdx !=0){
+								//하위 트리가 없다면 select 자체를 생성하지 않는다.
+								if(!(data[selectIdx-1].tree == 0)){
+									$(selector).after('<select class="select_step2"><option>선택하세요</option></select>');
+								}
+								for(var i = 0; i <data[selectIdx-1].tree.length;i++){
+									$('.select_step2').append('<option>'+data[selectIdx-1].tree[i].field+'</option>')
+								}
+							}
+						})
+					}
+				}
+
+				//Init
+				selectComponent._initSelect('.select');
+				selectComponent._stepSelect();
+				//twoDepth
+
+
+            },error:function(){
+                console.log('안된다');
+            }
+        });
+    </script>
+</body>
+</html>
