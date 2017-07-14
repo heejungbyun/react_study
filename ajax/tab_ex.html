@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>Document</title>
+	<link rel="stylesheet" href="css/style.css">
+	<style>
+	.tab_ui{width:600px;margin:30px auto;}
+	.list_tab{display:table;width:100%;}
+	.item_tab{display:table-cell;text-align:center;background-color:#888;border-right:1px solid #fff;font-size:30px;padding:10px;box-sizing:border-box;}
+	.item_tab.on{background-color:#00c73c;}
+	.tab_panel{background-color:#fff;margin-top:3px;border:1px solid #ccc}
+
+	.panel_item{display:table;width:100%;table-layout:fixed;border-bottom:1px solid #ccc;}
+	.etc_wrap{display:table-cell;text-align:right;}
+	.content{display:table-cell}
+	.etc + .etc{padding-left:10px;}
+	</style>
+</head>
+<body>
+	<div class="tab_ui">
+		<ul class="list_tab">
+			<li class="item_tab on"><a href="#">tab01</a></li>
+			<li class="item_tab"><a href="#">tab02</a></li>
+		</ul>
+		<div class="tab_panel">
+			<div class="panel_list">
+				<div class="panel_item">
+					<p class="content">안녕하세요1</p>
+					<div class="etc_wrap">
+						<span class="etc date">2017.02.02</span>
+						<span class="etc name">변희정</span>
+					</div>
+				</div>
+			</div>
+		</div>
+		<ul class="list_tab">
+			<li class="item_tab"><a href="#">tab01</a></li>
+			<li class="item_tab on"><a href="#">tab02</a></li>
+		</ul>
+		<div class="tab_panel">
+			<div class="panel_list">
+				<div class="panel_item">
+					<p class="content">안녕하세요2</p>
+					<div class="etc_wrap">
+						<span class="etc name">변희정</span>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<script src="//code.jquery.com/jquery-1.12.4.min.js"></script>
+</body>
+</html>
