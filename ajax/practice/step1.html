@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>TEST Ajax</title>
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <style type="text/css">
+    .layer_loading{position:fixed;top:0;left:0;right:0;bottom:0}
+    </style>
+    <script src="//code.jquery.com/jquery-1.12.4.min.js"></script>
+    <script type="text/javascript">
+    $(document).ready(function(){
+        var loadImg = $(
+            '<div class="layer_loading" style="background:url(images/img_loading.gif) no-repeat 50%">' +
+                '<span class="sr-only">로딩중</span>' +
+            '</div>'
+            );
+
+        $(document).ajaxStart(function(){
+            $('body').append(loadImg); // 통신 요청이 시작되면 body에 로딩 이미지를 노출 시킵니다.
+            console.log('loading...');
+        });
+
+        $(document).ajaxStop(function(){
+            loadImg.fadeOut(function(){ // 통신이 끝나면 로딩이미지를 fadeOut 한뒤에 엘리먼트 자체를 삭제 합니다.
+                $(this).remove();
+            });
+            console.log('done!');
+        });
+
+        $('.btn_data').bind('click', function(){
+            $.ajax({
+                url : "data/data.txt", // 에러 이벤트를 보기위해 확장자명이나 파일이름을 틀리게 해보고, 어떤 메세지가 노출되는지 확인해보세요.
+                type : "get",    // 에러 메세지를 보기위해 오타를 쳐보세요.
+                dataType : "text", // 에러 이벤트를 보기위해 타입을 틀리게 해보고, 어떤 메세지가 노출되는지 확인해보세요.
+                cache : false, // get방식일때 cache가 기본적으로 true입니다. ture 또는 false 일때 네트워크창을 열어서 데이터가 어떻게 들어오는지 확인해보세요.
+                success : function(data){
+                    $('.result').addClass('bg-success').text(data);
+                    console.log(data);
+                },
+                error : function (xhr, textSatus, errorThrown) {
+                    $('.result').addClass('bg-danger').html('xhr :' + xhr.status + ' // textStatus :' + textSatus + ' // errorThrown :' + errorThrown)
+                }
+                /* beforSend : function(){
+                    // 통신 시작시 사용할 콜백 함수
+                } 또는
+                complete : function(){
+                    // 통신 완료시 사용할 콜백 함수
+                } */
+            });
+        });
+    });
+    </script>
+</head>
+<body>
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <button type="button" class="btn btn-default btn_data">GET DATA</button>
+    </div>
+    <div class="panel-body result">
+        여기에 데이터를 노출함
+    </div>
+</div>
+<div class="well">
+    더미 텍스트
+</div>
+</body>
+</html>

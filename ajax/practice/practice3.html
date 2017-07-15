@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Practice</title>
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <style type="text/css">
+    </style>
+    <script src="//code.jquery.com/jquery-1.12.4.min.js"></script>
+</head>
+<body>
+    <div class="panel panel-default">
+        <div class="panel panel-body cate">
+        </div>
+    </div>
+    <div class="panel-body result">
+
+    </div>
+    <script>
+        $.ajax({
+            'type':'get',
+            'url':'data/data_selector.json',
+            'dataType':'json',
+            'cache':false,
+            success:function(json){
+                //1depth 셀렉트박스 length
+                var dataLength = json.tree.length;
+
+                $(".cate").html('<select class="slc1"/>');
+
+                $('.slc1').html('<option>선택하세요</option>');
+
+                for(var i=0;i<dataLength;i++){
+                    $('.slc1').append('<option>'+json.tree[i].field+'</option>');
+                }
+
+                //전역변수로 빼서 각각의 IDX 값을 모든 셀렉트 컴포넌트에서 활용
+                var selecIdx,selecIdx2,selecIdx3,selecVal;
+
+                $(document).on('change','.slc1',function(e) {
+                    // 첫번째 셀렉트의 index가 저장될 변수
+                    SelecIdx = $(this).find('option:selected').index();
+                    selecVal = $(this).find('option:selected').text();
+
+                    var Idx = $(this).index();
+                    var cateDepth = json.tree[SelecIdx-1].tree;
+
+                     $('.result1,.result2,.result3,.slc2,.slc3').detach();
+                     //선택된 자식이 0 이 아닐때
+                     if(SelecIdx !=0){
+                         $('.cate').append('<select class="slc'+(Idx+2)+'"/>');
+                         $('.slc'+(Idx+2)).html('<option>선택하세요</선택하세요>');
+                         $('.result').append('<span class="result'+(Idx+1)+'"/>');
+                         $('.result'+(Idx+1)).html(selecVal+"&gt;");
+                         makeSlc();
+                     }
+                    function makeSlc(){
+                        for(var i = 0;i<cateDepth.length;i++){
+                            $('.slc2').append('<option>'+json.tree[SelecIdx-1].tree[i].field+'</option>')
+                        }
+                    }
+
+                }).on('change','.slc2',function(){
+                    // 두번째 셀렉트의 index가 저장될 변수
+                    SelecIdx2 = $(this).find('option:selected').index();
+                    selecVal = $(this).find('option:selected').text();
+
+                    $('.result2,.result3,.slc3').detach()
+
+                    if(SelecIdx2 !=0){
+                        $('.cate').append('<select class="slc3"/>');
+                        $('.slc3').html('<option>선택하세요</option>');
+                        $('.result').append('<span class="result2" />');
+                        $('.result2').html(selecVal+" &gt; ")
+                        makeSlc()
+                    }
+
+                    function makeSlc(){
+                        var cate3depth = json.tree[SelecIdx-1].tree[SelecIdx2-1].tree;
+                        for(var i = 0; i< cate3depth.length; i++){
+                            $('.slc3').append('<option>'+json.tree[SelecIdx-1].tree[SelecIdx2-1].tree[i].field)
+                            console.log(json.tree[SelecIdx-1].tree[SelecIdx2-1].tree[i].field)
+                        }
+                    }
+
+                }).on('change','.slc3',function(){
+                    SelecIdx3 = $(this).find('option:selected').index();
+                    selecVal = $(this).find('option:selected').text();
+
+                    $('.result3').detach();
+
+                    if(SelecIdx3 !=0){
+                        $('.result').append('<span class="result3" />');
+                        $('.result3').html(selecVal)
+                    }
+                })
+            },error:function(){
+                console.log('안된다');
+            }
+        });
+    </script>
+</body>
+</html>

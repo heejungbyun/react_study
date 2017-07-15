@@ -1,0 +1,48 @@
+<!doctype html>
+<html>
+<head>
+	<title>Load JSON data with jQuery, PHP and MySQL Example</title>
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+</head>
+<body>
+
+<form>
+    Fruit:
+    <select name="name" id="fruitName">
+        <option>Apple</option>
+        <option>Banana</option>
+        <option>Orange</option>
+        <option>Pear</option>
+    </select>
+    Variety:
+    <select name="variety" id="fruitVariety">
+    </select>
+</form>
+
+<script>
+
+function populateFruitVariety() {
+
+	$.getJSON('/fruit-varities.php', {fruitName: $('#fruitName').val()}, function (data) {
+
+		var select = $('#fruitVariety');
+		var options = select.prop('options');
+		$('option', select).remove();
+
+		$.each(data, function (index, array) {
+			options[options.length] = new Option(array['variety']);
+		});
+
+	});
+
+}
+
+populateFruitVariety();
+$('#fruitName').change(function () {
+	populateFruitVariety();
+});
+
+</script>
+
+</body>
+</html>
