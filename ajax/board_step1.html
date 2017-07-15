@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+	.wrap{padding:20px}
+	table{width:100%;border-collapse:collapse;border-spacing:0;}
+	th{background-color:#efefef;border-bottom:1px solid #ecf0f0}
+	td{text-align:center;border-bottom:1px solid #000;padding:10px 0}
+	.content{text-align:left;}
+	</style>
+</head>
+<body>
+    <div class="wrap">
+		<table class="table">
+			<colgroup>
+				<col>
+				<col>
+				<col>
+				<col width="30%">
+			</colgroup>
+			<thead>
+				<tr>
+					<th>이름</th>
+					<th>이메일</th>
+					<th>성별</th>
+					<th>주소</th>
+					<th>내용</th>
+				</tr>
+			</thead>
+			<tbody class="tbody">
+				<!-- <tr>
+					<td>변희정</td>
+					<td>byonine@naver.com</td>
+					<td>여자</td>
+					<td>서울시송파구</td>
+					<td class="content">안녕하세요여러분안녕하세요여러분안녕하세요여러분안녕하세요여러분안녕하세요여러분</td>
+				</tr> -->
+			</tbody>
+		</table>
+    </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script>
+        $.ajax({
+            'type':'get',
+            'url':'data/board_list.json',
+            'dataType':'json',
+            'cache':true,
+                success:function(json){
+                    for(var a = 1; a < json.length;a++){
+                        var wrapper = $('<tr>');
+                        var name = $('<td>' +json[0].first_name + '</td>');
+                        var email = $('<td>'+json[0].email+'</td>');
+                        var gender = $('<td>'+json[0].gender+'</td>');
+                        var address = $('<td>'+json[0].address+'</td>');
+                        var title = $('<td>'+json[0].title+'</td>');
+                        wrapper.append(name,email,gender,address,title).appendTo('.tbody');
+                    }
+                },error:function(){
+                    console.log('error');
+                }
+        });
+    </script>
+</body>
+</html>
