@@ -1,0 +1,27 @@
+<div class="panel panel-success">
+	<div class="panel-heading">
+		<strong class="">Hello Ajax</strong>
+	</div>
+	<div class="panel-body">
+		<p class="well">
+			가나다라마바사
+		</p>
+		<div class="form-group">
+			<input type="text" class="form-control" name="" value="" placeholder="입력해주세요">
+		</div>
+		<div class="text-right">
+			<button type="button" id="btnPrimary" class="btn btn-primary">변경</button>
+		</div>
+	</div>
+</div>
+<script type="text/javascript">
+function callA(){
+    var para = document.getElementsByTagName('p');
+	var el = '<span style="color:red" class="btn btn-default" onClick="alert(\'서울특별시\');">대한민국</span>';
+    para[0].innerHTML = el
+}
+var btnPr =  document.querySelectorAll('#btnPrimary');
+btnPr[0].addEventListener('click', function(){
+    callA();
+});
+</script>

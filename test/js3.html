@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>javascript closure</title>
+</head>
+<body>
+    <div class="wrap">
+        <div class="header">
+            <button class="load_ajax">불러오잣</button>
+        </div>
+        <div class="result" style="position:relative;height:200px;">
+            미리텍스트
+
+        </div>
+        <div>
+            더미텍스트 ㅋㅋㅋ
+        </div>
+    </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script>
+         var dimmed = $('<div class="dimmed" style="position:absolute;left:0;top:0;right:0;bottom:0;background-color:rgba(0,0,0,0.8)"></div>')
+        $('.load_ajax').on('click',function(){
+            $(document).ajaxStart(function(){
+                // beforesend랑 똑같다.
+                console.log('시작')
+                // 모든 전송에 대한 이벤트 발생
+            })
+            $(document).ajaxStop(function(){
+                // complete랑 똑같다
+                console.log('끝')
+                // 모든 전송에 대한 이벤트 발생
+            })
+            $.ajaxSetup({
+                "url":'data/data.txt',
+                "type":'get',
+                "dataType":'text',
+                // "beforeSend":function(){
+                //     //전송을 시작했을때 이벤트
+                //     $('body').append(dimmed)
+                // },
+                // "complete":function(){
+                //     //전송완료
+                //     dimmed.fadeOut(function(){
+                //         $(this).remove();
+                //     })
+                // }
+            })
+            $.ajax({
+                "success":function(data){
+                    $('.result').text(data)
+                },
+                "error":function(xhr, txtStatus, errorThrown){
+                    document.write('통신에 실패했습니다.')
+                }
+            });
+        })
+    </script>
+</body>
+</html>

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Practice</title>
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <style type="text/css">
+     .panel-body span{display:none;}
+    </style>
+    <script src="//code.jquery.com/jquery-1.12.4.min.js"></script>
+</head>
+<body>
+    <div class="panel panel-default">
+        <div class="panel panel-body">
+            <span id="category1"></span>
+            <span id="category2"></span>
+            <span id="category3"></span>
+        </div>
+    </div>
+    <div class="panel-body result">
+
+    </div>
+    <script>
+        var dataUrl = 'data/data_category.html ';
+        $('#category1').load(dataUrl+'#category1-1',function(){
+            $(this).show();
+        });
+        $(document).on('change','#category1 > select',function(e){
+            var target = $(this).find('option:selected').attr('data-target');
+            $('#category2, #category3').empty().hide();
+            $('#category2').load(dataUrl+target,function(){
+                $(this).show()
+            })
+        });
+        $(document).on('change','#category2 > select',function(){
+            var target = $(this).find('option:selected').attr('data-target');
+            $('#category3').empty().hide();
+            $('#category3').load(dataUrl+target,function(){
+                $(this).show()
+            })
+        });
+        $(document).on('change','#category3>select',function(){
+            var data1 = $('#category1 > select > option:selected').val()
+            var data2 = $('#category2 > select > option:selected').val()
+            var data3 = $(this).find('option:selected').val()
+            if($(this).find('option:selected').index() > 0){
+                $('.result').html(data1 + '&gt;' + data2 + '&gt;' + data3)
+            }
+        })
+    </script>
+</body>
+</html>
