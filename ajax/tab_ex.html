@@ -25,31 +25,58 @@
 			<li class="item_tab"><a href="#">tab02</a></li>
 		</ul>
 		<div class="tab_panel">
-			<div class="panel_list">
-				<div class="panel_item">
+			<ul class="panel_list">
+				<!--<li class="panel_item">
 					<p class="content">안녕하세요1</p>
 					<div class="etc_wrap">
 						<span class="etc date">2017.02.02</span>
 						<span class="etc name">변희정</span>
 					</div>
-				</div>
-			</div>
-		</div>
-		<ul class="list_tab">
-			<li class="item_tab"><a href="#">tab01</a></li>
-			<li class="item_tab on"><a href="#">tab02</a></li>
-		</ul>
-		<div class="tab_panel">
-			<div class="panel_list">
-				<div class="panel_item">
-					<p class="content">안녕하세요2</p>
-					<div class="etc_wrap">
-						<span class="etc name">변희정</span>
-					</div>
-				</div>
-			</div>
+				</li>-->
+			</ul>
 		</div>
 	</div>
 	<script src="//code.jquery.com/jquery-1.12.4.min.js"></script>
+	<script>
+		$.ajax({
+			type : 'get',
+			url : 'data/tabdata0.json',
+			dataType : 'json',
+			cache : false,
+			success : function(json){
+				console.log(json);
+				var wrap = $('.panel_list');
+				// 첫번째 탭
+				
+				$(document).on('click', '.item_tab', function(){
+					$(this).addClass('on').siblings().removeClass('on');
+					$('.panel_item').detach();
+					//for(var i=0; i<json.tab0)
+			
+					var that = $(this).index()+1;
+					for(var i =0; i<json['tab0' + that].length; i++){
+						var list = $('<li class="panel_item" />');
+						var content = $('<p class="content">'+ json['tab0'+ that][i].content +'</p>');
+						var etcWrap = $('<div class="etc_wrap" />');
+						//var name = $('<span class="etc">'+ json['tab0'+ that][i].name +'</span>');
+						//var title = $('<span class="etc">'+ json['tab0'+ that][i].title +'</span>');
+						//var date = $('<span class="etc">'+ json['tab0'+ that][i].date +'</span>');
+
+						for(var key in json['tab0'+that][i]){
+							if(!(key == 'content')){
+								$('<span class="etc">'+ json['tab0'+that][i][key] +'</span>').appendTo(etcWrap);
+							}
+						}
+
+						//etcWrap.append(title,date,name);
+						list.append(content, etcWrap).appendTo(wrap);
+					}
+					console.log(that);
+				});
+			},error : function(){
+				console.log('안됨');
+			}
+		});
+	</script>
 </body>
 </html>

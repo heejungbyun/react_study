@@ -24,7 +24,7 @@
             cache : 'true',
             success : function(json){
                 console.log(json);
-                for(var i=0; i < json.length; i++){
+                /*for(var i=0; i < json.length; i++){
                     var wrap = $('<tr />');
                     var name = $('<td>'+ json[i].first_name  +'</td>'),
                         email = $('<td>'+ json[i].email  +'</td>'),
@@ -34,8 +34,15 @@
 
                     wrap.append(name, email, gender, address, title);
                     wrap.appendTo('.tbody');
+                }*/
+                for(var i=0; i<json.length; i++){
+                    console.log(json[i]);
+                    var wrap = $('<tr />');
+                    for(var j in json[i]){
+                        wrap.append('<td>'+ json[i][j] +'</td>');
+                    }
+                    wrap.appendTo('.tbody');
                 }
-                
             },
             error : function(){
                 console.log('안됨');
