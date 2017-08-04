@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, width=device-width">
+<title>Call Number</title>
+    <style type="text/css">
+        div{padding:20px}
+        input[type="text"]{width:60px;text-align:center;font-size:15px;color:blue}
+        #result{color:red}
+    </style>
+    <script type="text/javascript">
+        var callNum = new Array();
+        var inp = document.getElementsByName('inpNum');
+
+        // 번호 저장
+        function addCallNum(n1, n2, n3) {
+            var n1 = inp[0].value,
+                n2 = inp[1].value,
+                n3 = inp[2].value,
+                addNum = [];
+
+            if ((!n1 == 0) && (!n2 == 0) && (!n3 == 0)) {
+                addNum.unshift(n1, n2, n3);
+                this.joinNum = addNum.join('-');
+                callNum.push(joinNum);
+                alert('전화번호를 저장하였습니다.');
+                console.log(callNum);
+            } else {
+                alert('전화번호를 올바르게 입력해주세요.');
+            }
+        }
+
+        // 번호 보기
+        function resultNum() {
+            var n = prompt('전화번호부에 저장된 순서(index)를 입력해주세요.'),
+                resultNum = callNum[n],
+                result = document.getElementById('result');
+
+            if ((resultNum == undefined) || (resultNum == null)) {
+                alert('저장된 전화번호가 없습니다.');
+            } else {
+                result.innerHTML = resultNum;
+                console.log(resultNum);
+            }
+        }
+        /*
+        // 고아 브랜치 만들기
+        $ git checkout master
+        $ git checkout --orphan c_YYMMDD_CAMPAIGNNAME
+        $ git rm -rf .
+        $ git push origin c_YYMMDD_CAMPAIGNNAME
+        */
+    </script>
+</head>
+
+<body>
+<div>
+    <input type="text" name="inpNum" maxlength="3" /> -
+    <input type="text" name="inpNum" maxlength="4" /> -
+    <input type="text" name="inpNum" maxlength="4" />
+    <button type="button" onclick="addCallNum();">번호저장</button>
+</div>
+<div>
+    <button type="button" onclick="resultNum();">번호보기</button>
+    <p>호출번호 : <span id="result"></span></p>
+</div>
+</body>
+</html>
